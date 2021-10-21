@@ -1,0 +1,10 @@
+**/.vs
+**/.vscode
+**/.DS_Store
+**/.idea
+
+**/obj
+**/bin
+
+secrets
+**/node_modules
