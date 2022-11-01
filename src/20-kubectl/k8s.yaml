@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: docker-tutorial
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-example
+  namespace: docker-tutorial
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kube-example
+  template:
+    metadata:
+      labels:
+        app: kube-example
+        version: v1
+    spec:
+      containers:
+      - name: kube-example
+        image: node-example-api:a1b2c3d4
+        resources:
+          requests:
+            memory: 50Mi
+            cpu: 20m
+          limits:
+            memory: 100Mi
+            cpu: 50m
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: kube-example-svc
+  namespace: docker-tutorial
+spec:
+  ports:
+  - name: http-ingress
+    protocol: TCP
+    port: 80
+    targetPort: 3000
+  selector:
+    app: kube-example
+  type: ClusterIP

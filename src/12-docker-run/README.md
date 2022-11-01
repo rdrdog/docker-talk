@@ -1,4 +1,4 @@
-# 10 - Volumes
+# 12 - Volumes
 
 In some cases, you may want to persist data across container restarts. For example, you might be running a database server as a container.
 In this case, while the container is immutable, the data shouldn't die with the container.
